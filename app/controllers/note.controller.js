@@ -1,25 +1,25 @@
 const db = require("../models");
-const Tutorial = db.tutorials;
+const Note = db.notes;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Tutorial
+// Crear una tarea
 exports.create = (req, res) => {
-  // Validate request
+  // Validar request
   if (!req.body.title) {
     res.status(400).send({
-      message: "Content can not be empty!"
+      message: "¡El contenido no puede estar vacío!"
     });
     return;
   }
 
-  // Create a Tutorial
+  // Crear tarea
   const note = {
     title: req.body.title,
     description: req.body.description,
     published: req.body.published ? req.body.published : false
   };
 
-  // Save Tutorial in the database
+  // Guardar tarea en el basa de datos
   Note.create(note)
     .then(data => {
       res.send(data);
@@ -27,12 +27,12 @@ exports.create = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Tutorial."
+          err.message || "Se produjo un error al crear la tarea."
       });
     });
 };
 
-// Retrieve all Tutorials from the database.
+// Recuperar todas las notas de la base de datos.
 exports.findAll = (req, res) => {
   const title = req.query.title;
   var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
@@ -44,12 +44,12 @@ exports.findAll = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Se produjo un error al recuperar las tareas."
       });
     });
 };
 
-// Find a single Tutorial with an id
+//Encontrar una sola tarea con un id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
@@ -59,12 +59,12 @@ exports.findOne = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error retrieving Tutorial with id=" + id
+        message: "Error al recuperar la tarea con id =" + id
       });
     });
 };
 
-// Update a Tutorial by the id in the request
+// Actualizar una tarea por el id en la solicitud
 exports.update = (req, res) => {
   const id = req.params.id;
 
@@ -74,17 +74,17 @@ exports.update = (req, res) => {
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Note was updated successfully."
+          message: "La tarea se actualizó correctamente."
         });
       } else {
         res.send({
-          message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+          message: `No se puede actualizar la tarea con id=${id}. ¡Quizás no se encontró la tarea o el cuerpo requerido está vacío!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Tutorial with id=" + id
+        message: "Error al actualizar la tarea con id=" + id
       });
     });
 };
@@ -92,27 +92,78 @@ exports.update = (req, res) => {
 // Delete a Tutorial with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
+  const published = req.params.published;
 
   Note.destroy({
-    where: { id: id }
+    where: { id: id },
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Tutorial was deleted successfully!"
+          message: "¡La tarea se eliminó correctamente!"
         });
       } else {
         res.send({
-          message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`
+          message: `No se puede eliminar la tarea con id=${id}. ¡Quizás no se encontró el Tutorial!`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Tutorial with id=" + id
+        message: "No se pudo eliminar la tarea con id=" + id
       });
     });
 };
+
+
+// Delete a Tutorial with the specified id in the request
+/*exports.delete = (req, res) => {
+  const id = req.params.id;
+  const published = req.params.published;
+  mensaje = "esta seguro?";
+
+ if(published == 1){
+  Note.destroy({
+    where: { id: id },
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "¡La tarea se eliminó correctamente!"
+        });
+      } else {
+        res.send({
+          message: `No se puede eliminar la tarea con id=${id}. ¡Quizás no se encontró el Tutorial!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "No se pudo eliminar la tarea con id=" + id
+      });
+    });
+  }else{
+    Note.destroy({
+      where: { id: id }, 
+    })
+      .then(num => {
+        if (num == 1) {
+          res.send({
+            message: "¡La tarea se eliminó correctamente!"
+          });
+        } else {
+          res.send({
+            message: `No se puede eliminar la tarea con id=${id}. ¡Quizás no se encontró la tarea!`
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "No se pudo eliminar la tarea con id=" + id
+        });
+      });
+  }
+};*/
 
 // Delete all Tutorials from the database.
 exports.deleteAll = (req, res) => {
@@ -121,12 +172,12 @@ exports.deleteAll = (req, res) => {
     truncate: false
   })
     .then(nums => {
-      res.send({ message: `${nums} Tutorials were deleted successfully!` });
+      res.send({ message: `${nums} Las tareas se eliminaron con éxito!` });
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all tutorials."
+          err.message || "Se produjo un error al eliminar todos las tareas."
       });
     });
 };
@@ -140,7 +191,7 @@ exports.findAllPublished = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials."
+          err.message || "Se produjo un error al recuperar las tareas"
       });
     });
 };
