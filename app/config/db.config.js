@@ -1,8 +1,8 @@
 module.exports = {
     HOST: "us-cdbr-east-02.cleardb.com",
-    USER: "be7ba6ef04dc48",
-    PASSWORD: "7fcdc365",
-    DB: "heroku_772f4b737c544bc"
+    USER: "b07b094143ca64",
+    PASSWORD: "d7e65a0f",
+    DB: "heroku_264d704429e10e4"
    // pool: {
   //    max: 5,
     //  min: 0,
@@ -11,8 +11,7 @@ module.exports = {
    // }
   };
 
-  //:@/?reconnect=true
-
+  // mysql://:d7e65a0f@us-cdbr-east-02.cleardb.com/?reconnect=true
 /*
 pool opcional, se utilizará para la configuración del grupo de conexiones Sequelize:
 
