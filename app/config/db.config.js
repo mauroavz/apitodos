@@ -2,13 +2,14 @@ module.exports = {
     HOST: "us-cdbr-east-02.cleardb.com",
     USER: "b07b094143ca64",
     PASSWORD: "d7e65a0f",
-    DB: "heroku_264d704429e10e4"
-   // pool: {
-  //    max: 5,
-    //  min: 0,
-      //acquire: 30000,
-      //idle: 10000
-   // }
+    DB: "heroku_264d704429e10e4",
+    dialect: "mysql",
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
   };
 
   // mysql://:d7e65a0f@us-cdbr-east-02.cleardb.com/?reconnect=true
