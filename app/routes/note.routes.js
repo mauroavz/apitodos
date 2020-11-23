@@ -3,25 +3,25 @@ module.exports = app => {
   
     var router = require("express").Router();
   
-    // Create a new Tutorial
+    // Crear una nueva tarea
     router.post("/", notes.create);
   
-    // Retrieve all Tutorials
+    // Recuperar todas las tareas
     router.get("/", notes.findAll);
   
-    // Retrieve all published Tutorials
+    // Recuperar todas las tareas pendientes
     router.get("/published", notes.findAllPublished);
   
-    // Retrieve a single Tutorial with id
+    // Recuperar una sola tarea con id
     router.get("/:id", notes.findOne);
   
-    // Update a Tutorial with id
+    // Subir tarea con id
     router.put("/:id", notes.update);
   
-    // Delete a Tutorial with id
+    // Eliminar tarea con id
     router.delete("/:id", notes.delete);
   
-    // Delete all Tutorials
+    // eliminar todos los tutoriales
     router.delete("/", notes.deleteAll);
   
     app.use('/api/notes', router);

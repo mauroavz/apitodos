@@ -89,7 +89,7 @@ exports.update = (req, res) => {
     });
 };
 
-// Delete a Tutorial with the specified id in the request
+// Eliminar una tarea con la id especificada en la solicitud
 exports.delete = (req, res) => {
   const id = req.params.id;
   const published = req.params.published;
@@ -116,56 +116,7 @@ exports.delete = (req, res) => {
 };
 
 
-// Delete a Tutorial with the specified id in the request
-/*exports.delete = (req, res) => {
-  const id = req.params.id;
-  const published = req.params.published;
-  mensaje = "esta seguro?";
-
- if(published == 1){
-  Note.destroy({
-    where: { id: id },
-  })
-    .then(num => {
-      if (num == 1) {
-        res.send({
-          message: "¡La tarea se eliminó correctamente!"
-        });
-      } else {
-        res.send({
-          message: `No se puede eliminar la tarea con id=${id}. ¡Quizás no se encontró el Tutorial!`
-        });
-      }
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "No se pudo eliminar la tarea con id=" + id
-      });
-    });
-  }else{
-    Note.destroy({
-      where: { id: id }, 
-    })
-      .then(num => {
-        if (num == 1) {
-          res.send({
-            message: "¡La tarea se eliminó correctamente!"
-          });
-        } else {
-          res.send({
-            message: `No se puede eliminar la tarea con id=${id}. ¡Quizás no se encontró la tarea!`
-          });
-        }
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "No se pudo eliminar la tarea con id=" + id
-        });
-      });
-  }
-};*/
-
-// Delete all Tutorials from the database.
+// Elimine todas las tareas de la base de datos.
 exports.deleteAll = (req, res) => {
   Note.destroy({
     where: {},
@@ -182,7 +133,7 @@ exports.deleteAll = (req, res) => {
     });
 };
 
-// find all published Tutorial
+// encontrar todos las tareas publicadas
 exports.findAllPublished = (req, res) => {
   Note.findAll({ where: { published: true } })
     .then(data => {
