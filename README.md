@@ -1,8 +1,8 @@
+Api de To-Dos app, con Node.js y Mysql
+
 ## Project setup
 ```
 npm install
 
 
-## run server
-
-node server.js# apitodos
+## node server.js# apitodos
