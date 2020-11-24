@@ -6,5 +6,7 @@ https://mytareas.herokuapp.com/
 ## Project setup
 npm install
 
+##run server
+node server.js
 
 ## node server.js# apitodos
