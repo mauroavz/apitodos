@@ -15,7 +15,7 @@ module.exports = (sequelize, Sequelize) => {
 };
 
 /*
-Este modelo de Sequelize representa la tabla de tutoriales
+Este modelo de Sequelize representa la tabla de tareas
  en la base de datos MySQL. Estas columnas se generarán 
  automáticamente: id , título , descripción , publicado ,
   createdAt , updatedAt .

@@ -16,7 +16,7 @@ exports.create = (req, res) => {
   const note = {
     title: req.body.title,
     description: req.body.description,
-    published: req.body.published ? req.body.published : false
+    published: req.body.published ? req.body.published : false //false es Pendiente
   };
 
   // Guardar tarea en el basa de datos
